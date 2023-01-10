@@ -1,18 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
+import List from "../../../components/UI/List/List";
+import useHttpGetClient from "../../../hooks/use-http-get-client";
 
 function TeacherListPage() {
   const { pathname } = useLocation();
+  const teachers = useHttpGetClient('teachers')
   return (
     <div>
       <h1>Teachers</h1>
-      <ul>
-        <li>
-          <Link to={pathname + "/1"}>1</Link>
-        </li>
-        <li>
-          <Link to={pathname + "/2"}>2</Link>
-        </li>
-      </ul>
+      <List list={teachers} />
       <Link to={pathname + "/new"}>Registrera ny lärare</Link>
     </div>
   );

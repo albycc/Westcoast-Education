@@ -1,5 +1,6 @@
 
-function List({ list }) {
+function List({ list, properties }) {
+
   return (
     <ul>
       {list.map((item) => (<li key={item.id}>

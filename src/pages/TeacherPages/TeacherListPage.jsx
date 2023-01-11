@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import LinkList from "../../components/UI/Lists/LinkList";
 import Table from "../../components/UI/Table/Table";
 import useHttpGetClient from "../../hooks/use-http-get-client";
 

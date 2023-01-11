@@ -9,7 +9,7 @@ function CourseDetailPage() {
       {course && <>
         <h1>{course.title}</h1>
         <p>ID: {course.courseId}</p>
-        <p>Length: {course.length}</p>
+        <p>Length: {course.length} veckor</p>
         <p>Start datum: {course.startDate}</p>
         <p>{course.description}</p>
       </>}

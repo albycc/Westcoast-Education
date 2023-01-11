@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import LinkList from "../../components/UI/Lists/LinkList";
 import Table from "../../components/UI/Table/Table";
 import useHttpGetClient from "../../hooks/use-http-get-client";
 
 function CoursesListPage() {
   const { pathname } = useLocation();
-  const courses = useHttpGetClient("courses");
+  let courses = useHttpGetClient("courses");
+
+  courses = courses.map(course => {return {...course, length: course.length + ' veckor'}})
   return (
     <div>
       <h1>Courses</h1>

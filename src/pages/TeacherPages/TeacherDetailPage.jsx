@@ -10,7 +10,7 @@ function TeacherDetailPage(){
         <p>Personnr: {teacher.socialId}</p>
         <p>Email: {teacher.email}</p>
         <p>Mobil: {teacher.phone}</p>
-        <p>Kompetens: {teacher.competence}</p>
+        <p>Kompetens: {teacher.competence.join(', ')}</p>
         
         </>}
     </div>

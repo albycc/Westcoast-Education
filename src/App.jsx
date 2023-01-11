@@ -8,6 +8,7 @@ import TeacherRegisterPage from "./pages/TeacherPages/TeacherRegisterPage";
 import HomePage from "./pages/HomePages/HomePage";
 import BasePage from "./pages";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import "./App.css"
 
 function App() {
   return (

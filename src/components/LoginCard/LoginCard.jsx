@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 import AuthContext from "../../store/auth-context";

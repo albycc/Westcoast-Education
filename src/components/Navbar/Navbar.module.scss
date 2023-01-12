@@ -1,0 +1,37 @@
+@import "../../Assets/Styles/base/variables";
+
+.navbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1em;
+    background-color: #F8F8F8;
+    box-shadow: 2px 2px 6px rgba(0,0,0, 0.3);
+}
+
+.navbar{
+    display: flex;
+
+    ul > li{
+        display: inline;
+        a {
+            text-decoration: none;
+            color: $fontGrey;
+        }
+        & + li{
+            margin-left: 2em;
+        }
+
+    }
+
+}
+
+.login-container{
+    display: flex;
+    flex-direction: row-reverse;
+    width:12em;
+    & > * + *{
+        margin-right:10px;
+
+    }
+}

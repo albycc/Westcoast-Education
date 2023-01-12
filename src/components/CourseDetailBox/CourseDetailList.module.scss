@@ -1,0 +1,18 @@
+
+.courses-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.courses-menu{
+    display: flex;
+    justify-content:center;
+    color:#2C83D3;
+    cursor: pointer;
+
+    & > span + span{
+        margin-left:8em;
+    }
+}

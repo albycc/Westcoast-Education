@@ -1,37 +1,74 @@
-import { useRef } from "react";
-import config from "../../config.json"
+import { useState, useReducer } from "react";
+import ModalMessage from "../../components/ModalMessage/ModalMessage";
+import config from "../../config.json";
+
+const initialState = {
+  title: "",
+  courseId: "",
+  length: "",
+  description: "",
+  startDate: "",
+};
+
+const formReducer = (state, action) => {
+  if(action.type === 'UPDATE'){
+    return { ...state, ...action.payload}
+  }
+
+  return state;
+};
 
 function CourseRegisterPage() {
-  const titleInputRef = useRef();
-  const courseIdInputRef = useRef();
-  const lengthInputRef = useRef();
-  const descriptionInputRef = useRef();
-  const startDateInputRef = useRef();
+  const [formData, setFormData] = useReducer(formReducer, initialState);
+  const [buttonDisabled, setButtonDisabled] = useState(true)
+
+  const [modularVisible, setModularVisible] = useState(false);
+
+  const updateValue = (event) => {
+    const inputField = event.target
+    console.log('name: ', inputField.name)
+    console.log('value: ', inputField.value);
+    setFormData({type:'UPDATE', payload:{[inputField.name]:inputField.value}})
+
+  }
+  const checkValidation = () => {
+    console.log(formData)
+      for (let value of Object.values(formData)) {
+      if (!value) {
+        setButtonDisabled(true)
+        return;
+      }
+    }
+    setButtonDisabled(false)
+
+  }
 
   const formSubmitHandler = (event) => {
-    event.preventDefault()
-    const courseObject = {
-      courseId: courseIdInputRef.current.value,
-      title: titleInputRef.current.value,
-      length: +lengthInputRef.current.value,
-      description: descriptionInputRef.current.value,
-      startDate: startDateInputRef.current.value,
-    };
+    event.preventDefault();
+    console.log(formData)
 
-    console.log(courseObject)
+    // //check object for empty values
+    // for (let [key, value] of Object.entries(courseObject)) {
+    //   if (!value) {
+    //     alert(`Empty fields: ${key}`);
+    //     return;
+    //   }
+    // }
 
-    try{
-        fetch(config.serverUrl + "courses", {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify(courseObject)
-        }).then(response => console.log(response))
-
-    }
-    catch(error){
-        console.error(error)
+    try {
+      fetch(config.serverUrl + "courses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((response) => {
+        if (response.status === 201) {
+          setModularVisible(true);
+        }
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
   return (
@@ -40,7 +77,13 @@ function CourseRegisterPage() {
         <ul>
           <li>
             <label htmlFor="title">Titel</label>
-            <input type="text" name="title" id="title" ref={titleInputRef} />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              onChange={updateValue}
+              onBlur={checkValidation}
+            />
           </li>
           <li>
             <label htmlFor="courseId">Kurs id</label>
@@ -48,7 +91,9 @@ function CourseRegisterPage() {
               type="text"
               name="courseId"
               id="courseId"
-              ref={courseIdInputRef}
+              onChange={updateValue}
+              onBlur={checkValidation}
+              
             />
           </li>
           <li>
@@ -57,7 +102,8 @@ function CourseRegisterPage() {
               type="number"
               name="length"
               id="length"
-              ref={lengthInputRef}
+              onChange={updateValue}
+              onBlur={checkValidation}
             />
           </li>
           <li>
@@ -66,7 +112,8 @@ function CourseRegisterPage() {
               type="number"
               name="description"
               id="description"
-              ref={descriptionInputRef}
+              onChange={updateValue}
+              onBlur={checkValidation}
             ></textarea>
           </li>
           <li>
@@ -75,14 +122,21 @@ function CourseRegisterPage() {
               type="date"
               name="startDate"
               id="startDate"
-              ref={startDateInputRef}
+              onChange={updateValue}
+              onBlur={checkValidation}
             />
           </li>
           <li>
-            <button type="submit">Registrera kurs</button>
+            <button type="submit" disabled={buttonDisabled}>Registrera kurs</button>
           </li>
         </ul>
       </form>
+      {modularVisible && (
+        <ModalMessage
+          messageText="Registrerat ny kurs!"
+          closeFunction={setModularVisible}
+        />
+      )}
     </div>
   );
 }

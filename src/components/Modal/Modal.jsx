@@ -14,7 +14,6 @@ function Overlay() {
 }
 
 function Modal({children}) {
-    console.log(document.querySelector('#overlay-root'))
   return (
     <>
      {createPortal(<Overlay />, document.querySelector('#overlay-root'))}
@@ -23,4 +22,4 @@ function Modal({children}) {
   );
 }
 
-export { Modal, ModalOverlay };
+export default Modal

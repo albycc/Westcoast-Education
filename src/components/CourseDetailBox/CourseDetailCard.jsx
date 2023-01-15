@@ -1,16 +1,37 @@
+import Button from "../UI/Button/Button";
 import style from "./CourseDetailCard.module.scss";
-import missingImage from "../../Assets/images/no-image.jpg"
+import "../../Assets/styles/themes.scss";
+import { useContext, useState } from "react";
+import AuthContext from "../../store/auth-context";
 
 function CourseDetailCard({ course }) {
+  const context = useContext(AuthContext);
+  const [courseRegistered, setCourseRegistered] = useState(false);
+
+  const buttonHandler = () => {
+    console.log("setCourseRegistered")
+    setCourseRegistered(true)
+  }
   return (
     <div className={style["course-detail-card"]}>
-      {course && <>
-      <img src={course.imageSrc || missingImage} alt="course cover"/>
-        <p className={style["course-title"]}>{course.title}</p>
-        <p>{course.length}</p>
-        <p>{course.startDate}</p>
-        <button>Anmäl</button>
-      </>}
+      {course && (
+        <>
+          <h2 className={style["course-title"]}>{course.title}</h2>
+          <div className={style["course-info-box"]}>
+            <p>LÄNGD {course.length} veckor</p>
+            <p>START {course.startDate}</p>
+            {context.isLoggedIn ? (
+              <>
+                {courseRegistered ? (
+                  <p>Registrerad!</p>
+                ) : (
+                  <Button label="Anmäl" background="blue" func={buttonHandler}/>
+                )}
+              </>
+            ) : <p>Logga in för att anmäla</p>}
+          </div>
+        </>
+      )}
     </div>
   );
 }

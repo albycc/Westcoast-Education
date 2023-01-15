@@ -1,9 +1,12 @@
 import { useState, useReducer } from "react";
+import Form from "../../components/Form/Form";
+import FormItem from "../../components/Form/FormItem";
 import ModalMessage from "../../components/ModalMessage/ModalMessage";
+import Button from "../../components/UI/Button/Button";
 import config from "../../config.json";
 
 const initialState = {
-  forname: "",
+  firstname: "",
   surname: "",
   socialId: "",
   email: "",
@@ -44,9 +47,7 @@ function TeacherRegisterPage() {
     setButtonDisabled(false);
   };
 
-  const formSubmitHandler = (event) => {
-    event.preventDefault();
-
+  const formSubmitHandler = () => {
     
     formData.competence = formData.competence.split(",").map((s) => s.trim());
     
@@ -66,19 +67,18 @@ function TeacherRegisterPage() {
   };
   return (
     <div>
-      <form action="" onSubmit={formSubmitHandler}>
-        <ul>
-          <li>
-            <label htmlFor="forname">Förnamn</label>
+      <Form onSubmitFunction={formSubmitHandler}>
+          <FormItem>
+            <label htmlFor="firstname">Förnamn</label>
             <input
               type="text"
-              name="forname"
-              id="forname"
+              name="firstname"
+              id="firstname"
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="surname">Efternamn</label>
             <input
               type="text"
@@ -87,8 +87,8 @@ function TeacherRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="socialId">Person nummer</label>
             <input
               type="text"
@@ -97,8 +97,8 @@ function TeacherRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="email">E-mail</label>
             <input
               type="email"
@@ -107,8 +107,8 @@ function TeacherRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="phone">Mobil</label>
             <input
               type="tel"
@@ -117,8 +117,8 @@ function TeacherRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="competence">Kompetenser</label>
             <input
               type="text"
@@ -127,14 +127,11 @@ function TeacherRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
-            <button type="submit" disabled={buttonDisabled}>
-              Registrera lärare
-            </button>
-          </li>
-        </ul>
-      </form>
+          </FormItem>
+          <FormItem>
+          <Button type="submit" disabled={buttonDisabled} label="Registrera lärare" background="blue"/>
+          </FormItem>
+      </Form>
       {modularVisible && (
         <ModalMessage
           messageText="Registrerat ny lärare."

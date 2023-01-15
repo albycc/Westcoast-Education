@@ -9,10 +9,14 @@
 .courses-menu{
     display: flex;
     justify-content:center;
-    color:#2C83D3;
-    cursor: pointer;
-
-    & > span + span{
-        margin-left:8em;
+    flex-wrap: wrap;
+    
+    .course-category-button{
+        border:none;
+        background: none;
+        color:#2C83D3;
+        cursor:pointer;
+        margin: 0 1em;
+        font-size: 1.1em;
     }
 }

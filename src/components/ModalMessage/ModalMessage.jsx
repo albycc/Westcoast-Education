@@ -1,5 +1,6 @@
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
+import Button from "../UI/Button/Button";
 
 function ModalMessage({ messageText, closeFunction }) {
 
@@ -9,8 +10,9 @@ function ModalMessage({ messageText, closeFunction }) {
   return (
     <Modal>
       <Card>
+
         <p>{messageText}</p>
-        <button onClick={closeButtonHandler}>Stäng</button>
+        <Button label="OK" background="lightBlue" func={closeButtonHandler}/>
       </Card>
     </Modal>
   );

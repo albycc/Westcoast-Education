@@ -1,4 +1,4 @@
-import "./HeaderStyle.scss"
+
 
 function Header({children}){
     return <header>{children}</header>

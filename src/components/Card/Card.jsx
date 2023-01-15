@@ -1,7 +1,7 @@
-import "./Card.css"
+import style from "./Card.module.scss"
 
-function Card({children}){
-    return <div className="card">{children}</div>
+function Card({children, width}){
+    return <div className={`${style.card} ${style[width]}`}>{children}</div>
 }
 
 export default Card;

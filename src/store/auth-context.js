@@ -12,13 +12,11 @@ export function AuthContextProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log("context useeffect");
     const storageData = JSON.parse(localStorage.getItem("context"));
     if (storageData && userName === "") {
       setUserName(storageData.userName);
       setIsLoggedIn(true);
     }
-    console.log(userName, isLoggedIn);
   }, [userName, isLoggedIn]);
 
   const loginFunc = (loginObject) => {

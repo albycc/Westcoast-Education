@@ -1,18 +1,30 @@
 import { useState, useReducer } from "react";
+import Form from "../../components/Form/Form";
+import FormItem from "../../components/Form/FormItem";
 import ModalMessage from "../../components/ModalMessage/ModalMessage";
+import Section from "../../components/Section/Section";
+import Button from "../../components/UI/Button/Button";
 import config from "../../config.json";
 
 const initialState = {
   title: "",
   courseId: "",
-  length: "",
+  length: 0,
+  category: "",
   description: "",
   startDate: "",
 };
 
 const formReducer = (state, action) => {
-  if(action.type === 'UPDATE'){
-    return { ...state, ...action.payload}
+  console.log("formReducer: ", action);
+  if (action.type === "UPDATE") {
+    const { payload } = action;
+
+    if (payload.length) {
+      payload.length = +payload.length;
+    }
+
+    return { ...state, ...payload };
   }
 
   return state;
@@ -20,40 +32,41 @@ const formReducer = (state, action) => {
 
 function CourseRegisterPage() {
   const [formData, setFormData] = useReducer(formReducer, initialState);
-  const [buttonDisabled, setButtonDisabled] = useState(true)
-
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modularVisible, setModularVisible] = useState(false);
 
   const updateValue = (event) => {
-    const inputField = event.target
-    console.log('name: ', inputField.name)
-    console.log('value: ', inputField.value);
-    setFormData({type:'UPDATE', payload:{[inputField.name]:inputField.value}})
-
-  }
-  const checkValidation = () => {
-    console.log(formData)
-      for (let value of Object.values(formData)) {
+    const inputField = event.target;
+    console.log("name: ", inputField.name);
+    console.log("value: ", inputField.value);
+    setFormData({
+      type: "UPDATE",
+      payload: { [inputField.name]: inputField.value },
+    });
+  };
+  const checkValidation = (event) => {
+    console.log("checkvalidation: ", event.target.required);
+    console.log(formData);
+    for (let value of Object.values(formData)) {
       if (!value) {
-        setButtonDisabled(true)
+        setButtonDisabled(true);
         return;
       }
     }
-    setButtonDisabled(false)
+    setButtonDisabled(false);
+  };
 
-  }
+  const formSubmitHandler = () => {
+    console.log("formData: ", formData);
 
-  const formSubmitHandler = (event) => {
-    event.preventDefault();
-    console.log(formData)
 
-    // //check object for empty values
-    // for (let [key, value] of Object.entries(courseObject)) {
-    //   if (!value) {
-    //     alert(`Empty fields: ${key}`);
-    //     return;
-    //   }
-    // }
+    //check object for empty values
+    for (let [key, value] of Object.entries(formData)) {
+      if (!value) {
+        alert(`Empty fields: ${key}`);
+        return;
+      }
+    }
 
     try {
       fetch(config.serverUrl + "courses", {
@@ -72,10 +85,12 @@ function CourseRegisterPage() {
     }
   };
   return (
-    <div>
-      <form action="" onSubmit={formSubmitHandler}>
-        <ul>
-          <li>
+    <>
+    <Section>
+      <h1>Ny kurs</h1>
+    </Section>
+      <Form onSubmitFunction={formSubmitHandler}>
+          <FormItem>
             <label htmlFor="title">Titel</label>
             <input
               type="text"
@@ -84,8 +99,8 @@ function CourseRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="courseId">Kurs id</label>
             <input
               type="text"
@@ -93,10 +108,9 @@ function CourseRegisterPage() {
               id="courseId"
               onChange={updateValue}
               onBlur={checkValidation}
-              
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="length">Längd</label>
             <input
               type="number"
@@ -105,8 +119,27 @@ function CourseRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
+            <label htmlFor="category">Kategori</label>
+            <select
+              name="category"
+              id="category"
+              onChange={updateValue}
+              onBlur={checkValidation}
+              defaultValue={"DEFAULT"}
+            >
+              <option value="DEFAULT" disabled>
+                Välj categori
+              </option>
+              {config.coursesCategories.slice(1).map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+          </FormItem>
+          <FormItem>
             <label htmlFor="description">Beskrivning</label>
             <textarea
               type="number"
@@ -115,8 +148,8 @@ function CourseRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             ></textarea>
-          </li>
-          <li>
+          </FormItem>
+          <FormItem>
             <label htmlFor="startDate">Start datum</label>
             <input
               type="date"
@@ -125,19 +158,18 @@ function CourseRegisterPage() {
               onChange={updateValue}
               onBlur={checkValidation}
             />
-          </li>
-          <li>
-            <button type="submit" disabled={buttonDisabled}>Registrera kurs</button>
-          </li>
-        </ul>
-      </form>
+          </FormItem>
+          <FormItem>
+            <Button type="submit" disabled={buttonDisabled} label="Registrera kurs" background="blue"/>
+          </FormItem>
+      </Form>
       {modularVisible && (
         <ModalMessage
           messageText="Registrerat ny kurs!"
           closeFunction={setModularVisible}
         />
       )}
-    </div>
+    </>
   );
 }
 

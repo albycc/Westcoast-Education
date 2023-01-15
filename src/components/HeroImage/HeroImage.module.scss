@@ -1,5 +1,7 @@
-.background{
-    background-image: url('../../Assets/images/background.jpg');
-    background-size: cover;
-    width:100%;
+.background {
+  background-image: url("../../Assets/images/background.jpg");
+  background-size: cover;
+  width: 100%;
+  object-fit: cover;
+  height: 600px;
 }

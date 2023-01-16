@@ -7,8 +7,7 @@
       "length": 2,
       "category": "programming",
       "description": "Programmering med Python används för att behandla data, bygga spel eller skapa hemsidor. Python är vanligt som nybörjarspråk då det är relativt enkelt att använda. På grund av detta har programmeringsspråket på senare tid vuxit i popularitet. En annan anledning till den växande populariteten är det stora utbudet av tredjepartskod och tillgången till bibliotek. Genom programmering med Python kan du enkelt skapa nya program utan större ansträngning!",
-      "startDate": "2023-05-20",
-      "imageSrc": "iStock-543443692.png"
+      "startDate": "2023-05-20"
     },
     {
       "id": "2",
@@ -17,8 +16,7 @@
       "length": 3,
       "category": "programming",
       "description": "Cloud development, även kallat molntjänster, gör det möjligt att hantera programvaror, datalagring och andra funktioner på nätet istället för i din dators mjukvara. Det är ett anpassbart och prisvärt sätt att hantera applikationer, infrastruktur och mjukvaror.",
-      "startDate": "2023-05-16",
-      "imageSrc": "net developer.jpg"
+      "startDate": "2023-05-16"
     },
     {
       "id": "3",
@@ -27,8 +25,7 @@
       "length": 10,
       "category": "programming",
       "description": "Javascript är ett programmeringsspråk som utgör funktionaliteten på olika webbsidor. När du vill förbättra användarvänligheten på en hemsida kan du med fördel använda Javascript. Du kan exempelvis genom 2D- och 3D-grafik utveckla den dymaniska uppdateringen, användargränssnitt, menyer med mera. Javascript är den tredje grundstenten bland webbplatskomponenter, där de andra två styrs av HTML och CSS.",
-      "startDate": "2023-05-15",
-      "imageSrc": "college-students-computer-lab-5949308.jpg"
+      "startDate": "2023-05-15"
     },
     {
       "id": "4",
@@ -37,8 +34,7 @@
       "length": 7,
       "category": "analytics",
       "description": "Som IT-säkerhetsspecialist arbetar du med att identifiera säkerhetshot och vet hur IT-attacker fungerar. Inom IT-säkerhet ingår arbetsuppgifter som att hantera säkerhet för såväl webb som mobil, hantera informationsgranskning, utföra riskanalyser och molnsäkerhetsanalys. Din roll är således att säkerställa att eventuella säkerhetshål elimineras och att arbeta proaktivt, samt stoppa framtida attacker. Genom IT-Högskolans IT-säkerhetsspecialist-utbildning lär du dig infrastrukturen och kan analysera händelser i olika datorsystem.",
-      "startDate": "2023-05-12",
-      "imageSrc": "Tilburg University 20180627 - 05.jpg"
+      "startDate": "2023-05-12"
     },
     {
       "id": "5",
@@ -47,8 +43,7 @@
       "length": 10,
       "category": "project-management",
       "description": "En IT-projektledare, även kallat teknisk projektledare, leder och coachar teamet framåt för att leverera IT-lösningar av hög kvalité. I rollen blir du duktig på samarbeten, helhetstänkandet och vad som skapar nytta för kunden. Vardagen som projektledare inom IT är varierande och ställer olika krav på dig som ledare och person, vilket i sin tur skapar stor möjlighet till personlig utveckling.",
-      "startDate": "2023-05-21",
-      "imageSrc": "blogpost_image_program-manager-vs-project-manager.jpg"
+      "startDate": "2023-05-21"
     },
     {
       "id": "6",
@@ -57,8 +52,7 @@
       "length": 8,
       "category": "design",
       "description": "UX-Design står för User eXperience och är en heltäckande process från varumärke, design, användarvänlighet till funktioner. Det kan handla om fysiska produkter, mobilapplikationer eller andra digitala tjänster. Som UX-designer lär du dig att förstå användaren genom väletablerade modeller. Målet är att utveckla produkter som ger en optimal användarupplevelse.",
-      "startDate": "2023-05-24",
-      "imageSrc": "0_G-YYGxZ870dxYlRS.png"
+      "startDate": "2023-05-24"
     },
     {
       "id": "7",
@@ -67,10 +61,8 @@
       "length": 8,
       "category": "network",
       "description": "Denna kurs behandlar nätverksutrustning och IT-systemlösningar samt övervakning för att uppnå hög driftsäkerhet inom nätverksområdet. Givetvis tas både klient- och serverhantering upp. Dessutom behandlas programvara för både klienter och servrar samt administration av servertjänster i nätverksmiljö. Efter kursen har du utvecklat färdigheter i hård- och mjukvaruinstallationer samt i konfigurering, optimering, analys och administration av nätverk.",
-      "startDate": "2023-05-20",
-      "imageSrc": "nätverkstekniker-admin-på-datorhallen-75552873.jpg"
+      "startDate": "2023-05-20"
     }
-
   ],
   "teachers": [
     {

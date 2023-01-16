@@ -1,12 +1,4 @@
 {
     "baseUrl":"http://localhost:3000/",
-    "serverUrl":"http://localhost:3010/",
-    "coursesCategories":[
-        { "title": "Alla categorier", "value": "" },
-        { "title": "Programmering", "value": "programming" },
-        { "title": "Analys", "value": "analytics" },
-        { "title": "Projektledning", "value": "project-management" },
-        { "title": "Nätverk", "value": "network" },
-        { "title": "Design", "value": "design" }
-      ]
+    "serverUrl":"http://localhost:3010/"
 }

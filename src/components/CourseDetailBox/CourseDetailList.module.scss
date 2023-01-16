@@ -1,9 +1,17 @@
+@import '../../Assets/styles/variables.scss';
 
 .courses-container{
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content: center;
     max-width: 100%;
+}
+
+@media only screen and (min-width: $tabletScreen){
+    .courses-container{
+        flex-flow: row wrap;
+    }
+
 }
 
 .courses-menu{

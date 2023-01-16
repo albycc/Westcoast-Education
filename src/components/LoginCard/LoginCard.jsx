@@ -3,7 +3,6 @@ import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 import AuthContext from "../../store/auth-context";
 import Form from "../Form/Form";
-import Button from "../UI/Button/Button";
 import FormItem from "../Form/FormItem";
 import style from "./LoginCard.module.scss";
 
@@ -50,7 +49,9 @@ function LoginCard({ toggleFunction }) {
             />
           </FormItem>
           <FormItem>
-            <Button label="Logga in" background="blue"/> 
+          <button type="submit">
+            Logga in
+          </button>
           </FormItem>
         </Form>
       </Card>

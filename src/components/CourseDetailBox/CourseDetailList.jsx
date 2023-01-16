@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CourseDetailCard from "./CourseDetailCard";
 import style from "./CourseDetailList.module.scss";
-import config from "../../config.json"
 
 function CourseDetailList({courseList}) {
   const [courses, setCourses] = useState(courseList)
@@ -16,10 +15,19 @@ function CourseDetailList({courseList}) {
     setCourses(filteredList)
   }
 
+   const coursesCategories = [
+    { title: "Alla categorier", value: "" },
+    { title: "Programmering", value: "programming" },
+    { title: "Analys", value: "analytics" },
+    { title: "Projektledning", value: "project-management" },
+    { title: "Nätverk", value: "network" },
+    { title: "Design", value: "design" }
+  ]
+
   return (
     <div>
       <div className={style["courses-menu"]}>
-        {config.coursesCategories.map((menu) => (
+        {coursesCategories.map((menu) => (
           <button key={menu.value} value={menu.value} onClick={categoryButtonHandler} className={style['course-category-button']}>
             {menu.title}
           </button>

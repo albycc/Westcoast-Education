@@ -3,7 +3,6 @@ import Form from "../../components/Form/Form";
 import FormItem from "../../components/Form/FormItem";
 import ModalMessage from "../../components/ModalMessage/ModalMessage";
 import Section from "../../components/Section/Section";
-import Button from "../../components/UI/Button/Button";
 import config from "../../config.json";
 
 const initialState = {
@@ -16,7 +15,6 @@ const initialState = {
 };
 
 const formReducer = (state, action) => {
-  console.log("formReducer: ", action);
   if (action.type === "UPDATE") {
     const { payload } = action;
 
@@ -37,16 +35,13 @@ function CourseRegisterPage() {
 
   const updateValue = (event) => {
     const inputField = event.target;
-    console.log("name: ", inputField.name);
-    console.log("value: ", inputField.value);
     setFormData({
       type: "UPDATE",
       payload: { [inputField.name]: inputField.value },
     });
+    console.log(formData)
   };
-  const checkValidation = (event) => {
-    console.log("checkvalidation: ", event.target.required);
-    console.log(formData);
+  const checkValidation = () => {
     for (let value of Object.values(formData)) {
       if (!value) {
         setButtonDisabled(true);
@@ -57,8 +52,6 @@ function CourseRegisterPage() {
   };
 
   const formSubmitHandler = () => {
-    console.log("formData: ", formData);
-
 
     //check object for empty values
     for (let [key, value] of Object.entries(formData)) {
@@ -86,82 +79,94 @@ function CourseRegisterPage() {
   };
   return (
     <>
-    <Section>
-      <h1>Ny kurs</h1>
-    </Section>
+      <Section>
+        <h1>Ny kurs</h1>
+      </Section>
       <Form onSubmitFunction={formSubmitHandler}>
-          <FormItem>
-            <label htmlFor="title">Titel</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              onChange={updateValue}
-              onBlur={checkValidation}
-            />
-          </FormItem>
-          <FormItem>
-            <label htmlFor="courseId">Kurs id</label>
-            <input
-              type="text"
-              name="courseId"
-              id="courseId"
-              onChange={updateValue}
-              onBlur={checkValidation}
-            />
-          </FormItem>
-          <FormItem>
-            <label htmlFor="length">Längd</label>
-            <input
-              type="number"
-              name="length"
-              id="length"
-              onChange={updateValue}
-              onBlur={checkValidation}
-            />
-          </FormItem>
-          <FormItem>
-            <label htmlFor="category">Kategori</label>
-            <select
-              name="category"
-              id="category"
-              onChange={updateValue}
-              onBlur={checkValidation}
-              defaultValue={"DEFAULT"}
-            >
-              <option value="DEFAULT" disabled>
-                Välj categori
+        <FormItem>
+          <label htmlFor="title">Titel</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            onChange={updateValue}
+            onBlur={checkValidation}
+          />
+        </FormItem>
+        <FormItem>
+          <label htmlFor="courseId">Kurs id</label>
+          <input
+            type="text"
+            name="courseId"
+            id="courseId"
+            onChange={updateValue}
+            onBlur={checkValidation}
+          />
+        </FormItem>
+        <FormItem>
+          <label htmlFor="length">Längd</label>
+          <input
+            type="number"
+            name="length"
+            id="length"
+            onChange={updateValue}
+            onBlur={checkValidation}
+          />
+        </FormItem>
+        <FormItem>
+          <label htmlFor="category">Kategori</label>
+          <select
+            name="category"
+            id="category"
+            onChange={updateValue}
+            onBlur={checkValidation}
+            defaultValue={"DEFAULT"}
+          >
+            <option value="DEFAULT" disabled>
+              Välj categori
+            </option>
+              <option value="programming">
+                Programmering
               </option>
-              {config.coursesCategories.slice(1).map((category) => (
-                <option key={category.value} value={category.value}>
-                  {category.title}
-                </option>
-              ))}
-            </select>
-          </FormItem>
-          <FormItem>
-            <label htmlFor="description">Beskrivning</label>
-            <textarea
-              type="number"
-              name="description"
-              id="description"
-              onChange={updateValue}
-              onBlur={checkValidation}
-            ></textarea>
-          </FormItem>
-          <FormItem>
-            <label htmlFor="startDate">Start datum</label>
-            <input
-              type="date"
-              name="startDate"
-              id="startDate"
-              onChange={updateValue}
-              onBlur={checkValidation}
-            />
-          </FormItem>
-          <FormItem>
-            <Button type="submit" disabled={buttonDisabled} label="Registrera kurs" background="blue"/>
-          </FormItem>
+              <option value="analytics">
+                Analys
+              </option>
+              <option value="project-management">
+              Projektledning
+              </option>
+              <option value="network">
+              Nätverk
+              </option>
+              <option value="design">
+              Design
+              </option>
+          </select>
+        </FormItem>
+        <FormItem>
+          <label htmlFor="description">Beskrivning</label>
+          <textarea
+            type="number"
+            name="description"
+            id="description"
+            onChange={updateValue}
+            onBlur={checkValidation}
+          ></textarea>
+        </FormItem>
+        <FormItem>
+          <label htmlFor="startDate">Start datum</label>
+          <input
+            type="date"
+            name="startDate"
+            id="startDate"
+            onChange={updateValue}
+            onBlur={checkValidation}
+          />
+        </FormItem>
+        <FormItem>
+          <button type="submit" disabled={buttonDisabled}>
+            Registrera kurs
+          </button>
+        </FormItem>
       </Form>
       {modularVisible && (
         <ModalMessage

@@ -1,27 +1,18 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "../components/Layouts/Header/Header";
+import Main from "../components/Layouts/Main/Main";
+import Navbar from "../components/Navbar/Navbar";
 
 function BasePage() {
   return (
-    <div>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Start</Link>
-            </li>
-            <li>
-              <Link to="/courses">Kurser</Link>
-            </li>
-            <li>
-              <Link to="/teachers">Lärare</Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div>
+    <>
+      <Header>
+        <Navbar />
+      </Header>
+      <Main>
         <Outlet />
-      </div>
-    </div>
+      </Main>
+    </>
   );
 }
 

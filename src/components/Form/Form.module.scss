@@ -1,0 +1,67 @@
+@import '../../Assets/styles/variables.scss';
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  ul {
+    list-style-type: none;
+  }
+}
+
+.form-item-column {
+  display: flex;
+  flex-direction: column;
+  margin: 1.2em 0;
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+
+  label {
+    font-family: Roboto;
+    font-size: 1.2em;
+  }
+
+  input,
+  textarea,
+  select {
+    border: 0px solid grey;
+    border-radius: 5px;
+    font-size: 1.2em;
+    padding: 0.3em 0.4em;
+    font-family: Roboto;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  input {
+    height: 30px;
+  }
+
+  select {
+    height: 40px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 200px;
+  }
+
+  button[type='submit']{
+    border-radius: 10px;
+    border:none;
+    background-color: rgb(110, 118, 231);
+    color:white;
+    padding:10px 15px;
+    font-size:1.3em;
+    align-self: center;
+    cursor:pointer;
+    &:disabled{
+      background-color: $lightGrey;
+      cursor:default;
+    }
+  }
+}

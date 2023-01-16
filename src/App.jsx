@@ -4,9 +4,11 @@ import CourseRegisterPage from "./pages/CoursePages/CourseRegisterPage";
 import CoursesListPage from "./pages/CoursePages/CoursesListPage";
 import TeacherListPage from "./pages/TeacherPages/TeacherListPage";
 import TeacherDetailPage from "./pages/TeacherPages/TeacherDetailPage";
-import TeacherRegisterPage from "./pages/Admin/TeacherPage/TeacherRegisterPage";
+import TeacherRegisterPage from "./pages/TeacherPages/TeacherRegisterPage";
 import HomePage from "./pages/HomePages/HomePage";
 import BasePage from "./pages";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import "./App.css";
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route path=":id" element={<TeacherDetailPage />} />
           <Route path="new" element={<TeacherRegisterPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

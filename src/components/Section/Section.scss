@@ -1,0 +1,23 @@
+.margin-1em{
+    margin:1em;
+}
+
+.margin-3em{
+    margin:3em;
+}
+
+.padding-1em{
+    padding:1em
+}
+
+.padding-children-1em{
+    & > * {
+        padding:1em
+    }
+}
+
+.margin-children-1em{
+    & > * {
+        margin: 1em;
+    }
+}

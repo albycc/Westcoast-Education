@@ -1,0 +1,11 @@
+.link-button{
+    text-decoration: none;
+    color:rgb(66, 66, 202);
+    border-radius: 8px;
+    margin:2em 0;
+    font-size: 1.2em;
+
+    &:hover{
+        color:rgb(121, 121, 230);
+    }
+}

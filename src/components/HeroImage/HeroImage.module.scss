@@ -1,0 +1,17 @@
+@import '../../Assets/styles/variables.scss';
+
+.background {
+  background-image: url("../../Assets/images/background.jpg");
+  background-size: cover;
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
+
+@media only screen and (min-width: $tabletScreen){
+  .background{
+    height: 600px;
+
+  }
+
+}

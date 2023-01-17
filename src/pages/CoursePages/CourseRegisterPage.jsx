@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import Form from "../../components/Form/Form";
 import FormItem from "../../components/Form/FormItem";
 import ModalMessage from "../../components/ModalMessage/ModalMessage";
@@ -33,15 +33,7 @@ function CourseRegisterPage() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modularVisible, setModularVisible] = useState(false);
 
-  const updateValue = (event) => {
-    const inputField = event.target;
-    setFormData({
-      type: "UPDATE",
-      payload: { [inputField.name]: inputField.value },
-    });
-    console.log(formData)
-  };
-  const checkValidation = () => {
+  useEffect(() => {
     for (let value of Object.values(formData)) {
       if (!value) {
         setButtonDisabled(true);
@@ -49,10 +41,17 @@ function CourseRegisterPage() {
       }
     }
     setButtonDisabled(false);
+  }, [formData]);
+
+  const updateValue = (event) => {
+    const inputField = event.target;
+    setFormData({
+      type: "UPDATE",
+      payload: { [inputField.name]: inputField.value },
+    });
   };
 
   const formSubmitHandler = () => {
-
     //check object for empty values
     for (let [key, value] of Object.entries(formData)) {
       if (!value) {
@@ -74,7 +73,7 @@ function CourseRegisterPage() {
         }
       });
     } catch (error) {
-      console.error(error);
+      console.console(error);
     }
   };
   return (
@@ -85,13 +84,7 @@ function CourseRegisterPage() {
       <Form onSubmitFunction={formSubmitHandler}>
         <FormItem>
           <label htmlFor="title">Titel</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            onChange={updateValue}
-            onBlur={checkValidation}
-          />
+          <input type="text" name="title" id="title" onChange={updateValue} />
         </FormItem>
         <FormItem>
           <label htmlFor="courseId">Kurs id</label>
@@ -100,7 +93,6 @@ function CourseRegisterPage() {
             name="courseId"
             id="courseId"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -110,7 +102,6 @@ function CourseRegisterPage() {
             name="length"
             id="length"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -119,27 +110,16 @@ function CourseRegisterPage() {
             name="category"
             id="category"
             onChange={updateValue}
-            onBlur={checkValidation}
             defaultValue={"DEFAULT"}
           >
             <option value="DEFAULT" disabled>
               Välj categori
             </option>
-              <option value="programming">
-                Programmering
-              </option>
-              <option value="analytics">
-                Analys
-              </option>
-              <option value="project-management">
-              Projektledning
-              </option>
-              <option value="network">
-              Nätverk
-              </option>
-              <option value="design">
-              Design
-              </option>
+            <option value="programming">Programmering</option>
+            <option value="analytics">Analys</option>
+            <option value="project-management">Projektledning</option>
+            <option value="network">Nätverk</option>
+            <option value="design">Design</option>
           </select>
         </FormItem>
         <FormItem>
@@ -149,7 +129,6 @@ function CourseRegisterPage() {
             name="description"
             id="description"
             onChange={updateValue}
-            onBlur={checkValidation}
           ></textarea>
         </FormItem>
         <FormItem>
@@ -159,7 +138,6 @@ function CourseRegisterPage() {
             name="startDate"
             id="startDate"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>

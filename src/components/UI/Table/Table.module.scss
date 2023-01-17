@@ -1,9 +1,15 @@
 @import "../../../Assets/styles/variables.scss";
 
+.table-container{
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    width: 100vw;
+}
 
 .table{
+    align-self: center;
     border-collapse: collapse;
-    width:100%;
     font-size: 0.8em;
     thead{
         font-size: 1.1em;
@@ -36,6 +42,7 @@
 @media only screen and (min-width:$tabletScreen){
     .table{
         font-size: 1.2em;
+        
     }
 
 }

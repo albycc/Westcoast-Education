@@ -71,27 +71,30 @@ describe("CourseRegisterPage component", () => {
     });
   });
 
-  // describe("Register form interaction", () => {
-  //   test("Fill every input and button will be enabled", async () => {
-  //     setup();
+  describe("Register form interaction", () => {
+    test("Fill every input and button will be enabled", async () => {
+      setup();
 
-  //     const titleInput = screen.getByLabelText("Titel");
-  //     const courseIdInput = screen.getByLabelText("Kurs id");
-  //     const lengthInput = screen.getByLabelText("Längd");
-  //     const categoryInput = screen.getByLabelText("Kategori");
-  //     const descriptionInput = screen.getByLabelText("Beskrivning");
-  //     const startDatumInput = screen.getByLabelText("Start datum");
+      const titleInput = screen.getByLabelText("Titel");
+      const courseIdInput = screen.getByLabelText("Kurs id");
+      const lengthInput = screen.getByLabelText("Längd");
+      const categoryInput = screen.getByLabelText("Kategori");
+      const descriptionInput = screen.getByLabelText("Beskrivning");
+      const startDatumInput = screen.getByLabelText("Start datum");
 
-  //     await userEvent.type(titleInput, "C++");
-  //     await userEvent.type(courseIdInput, "KL365");
-  //     await userEvent.type(lengthInput, 11);
-  //     await userEvent.type(categoryInput, "programming");
-  //     await userEvent.type(descriptionInput, "Lorem ipsum");
-  //     await userEvent.type(startDatumInput, "2023-04-05");
+      await userEvent.type(titleInput, "C++");
+      await userEvent.type(courseIdInput, "KL365");
+      await userEvent.type(lengthInput, "11");
+      await userEvent.type(categoryInput, "programming");
+      await userEvent.selectOptions(categoryInput, "programming")
+      await userEvent.type(descriptionInput, "Lorem ipsum");
+      await userEvent.type(startDatumInput, "2023-04-05");
 
-  //     const button = screen.getByRole("button", { name: /registrera kurs/i });
 
-  //     expect(button).toBeEnabled();
-  //   });
-  // });
+      const button = screen.getByRole("button", { name: /registrera kurs/i });
+
+      expect(button).toBeEnabled();
+    });
+
+  });
 });

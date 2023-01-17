@@ -10,6 +10,6 @@ In terminal, be in the current project directory.
 
 Type 'npm install' (without brackets)
 
-Type npm run server
+Type 'npm run server'
 
-Open another terminal and run react proejct with npm start
+Open another terminal and run project with npm start

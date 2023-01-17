@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import Form from "../../components/Form/Form";
 import FormItem from "../../components/Form/FormItem";
 import ModalMessage from "../../components/ModalMessage/ModalMessage";
@@ -26,14 +26,7 @@ function TeacherRegisterPage() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modularVisible, setModularVisible] = useState(false);
 
-  const updateValue = (event) => {
-    const inputField = event.target;
-    setFormData({
-      type: "UPDATE",
-      payload: { [inputField.name]: inputField.value },
-    });
-  };
-  const checkValidation = () => {
+  useEffect(() => {
     for (let value of Object.values(formData)) {
       if (!value) {
         setButtonDisabled(true);
@@ -41,23 +34,35 @@ function TeacherRegisterPage() {
       }
     }
     setButtonDisabled(false);
+  }, [formData])
+
+  const updateValue = (event) => {
+    const inputField = event.target;
+    setFormData({
+      type: "UPDATE",
+      payload: { [inputField.name]: inputField.value },
+    });
   };
 
   const formSubmitHandler = () => {
     formData.competence = formData.competence.split(",").map((s) => s.trim());
 
+    try{
+      fetch(config.serverUrl + "teachers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((response) => {
+        if (response.status === 201) {
+          setModularVisible(true);
+        }
+      });
 
-    fetch(config.serverUrl + "teachers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    }).then((response) => {
-      if (response.status === 201) {
-        setModularVisible(true);
-      }
-    });
+    } catch(error){
+      console.log(error)
+    }
   };
   return (
     <>
@@ -69,7 +74,6 @@ function TeacherRegisterPage() {
             name="firstname"
             id="firstname"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -79,7 +83,6 @@ function TeacherRegisterPage() {
             name="surname"
             id="surname"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -89,7 +92,6 @@ function TeacherRegisterPage() {
             name="socialId"
             id="socialId"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -99,7 +101,6 @@ function TeacherRegisterPage() {
             name="email"
             id="email"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -109,7 +110,6 @@ function TeacherRegisterPage() {
             name="phone"
             id="phone"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
@@ -119,7 +119,6 @@ function TeacherRegisterPage() {
             name="competence"
             id="competence"
             onChange={updateValue}
-            onBlur={checkValidation}
           />
         </FormItem>
         <FormItem>
